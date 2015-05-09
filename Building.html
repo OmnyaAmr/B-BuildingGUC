@@ -1,0 +1,78 @@
+<html>
+	<head>
+		<title>B-Building</title>
+	</head>
+	<body>
+		<script src="three.min.js"></script>
+		<script>
+			
+var scene = new THREE.Scene();
+var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
+
+camera.position.y = 200;
+var renderer = new THREE.WebGLRenderer();
+renderer.setSize( window.innerWidth, window.innerHeight );
+document.body.appendChild( renderer.domElement );
+
+var material = new THREE.MeshBasicMaterial( { color: 0xFF9933 } );
+//var cubeTexture = THREE.ImageUtils.loadTexture('B.jpg');
+//var materialB = new THREE.MeshPhongMaterial( { map: THREE.ImageUtils.loadTexture('B.jpg') } );	
+
+//var materialB = new THREE.MeshLambertMaterial({ map: cubeTexture });		
+
+var objectB1 = new THREE.Mesh( new THREE.CubeGeometry( 30*Math.sqrt(2), 16, 40*Math.sqrt(2) ), material );
+objectB1.position.set(65,0,65);
+objectB1.rotation.y=Math.PI/4;
+scene.add( objectB1 );
+
+var objectB2 = new THREE.Mesh( new THREE.CubeGeometry( 40, 16, 20 ), material );
+objectB2.position.set(110,0,70);
+scene.add( objectB2 );
+
+var objectB3 = new THREE.Mesh( new THREE.CubeGeometry( 20, 16, 40 ), material );
+objectB3.position.set(70,0,110);
+scene.add( objectB3 );
+
+var objectB4 = new THREE.Mesh( new THREE.CubeGeometry( 50, 16, 20 ), material );
+objectB4.position.set(105,0,120);
+scene.add( objectB4 );
+
+var objectB5 = new THREE.Mesh( new THREE.CubeGeometry( 20, 16, 40 ), material );
+objectB5.position.set(60,0,20);
+scene.add( objectB5 );
+
+var objectB6 = new THREE.Mesh( new THREE.CubeGeometry( 40, 16, 20 ), material );
+objectB6.position.set(20,0,60);
+scene.add( objectB6 );
+
+var objectB7 = new THREE.Mesh( new THREE.CubeGeometry( 20, 16, 50 ), material );
+objectB7.position.set(10,0,25);
+scene.add( objectB7 );
+
+var planeGeo = new THREE.PlaneGeometry(5, 5, 10, 10);
+var planeMat = new THREE.MeshBasicMaterial({color: 0xFFFFFF});
+var plane = new THREE.Mesh(planeGeo, planeMat);
+plane.rotation.x = -Math.PI/2;
+plane.position.y = -2;
+scene.add(plane);
+
+function animate(t) {
+        // spin the camera in a circle
+        //camera.position.x = Math.sin(t/1000)*10;
+       // camera.position.y = 3;
+       // camera.position.z = Math.cos(t/1000)*10;
+        // you need to update lookAt on every frame
+        camera.lookAt(scene.position);
+        // renderer automatically clears unless autoClear = false
+        renderer.render(scene, camera);
+        // this is essential for animation
+        window.requestAnimationFrame(animate, renderer.domElement);
+      };
+
+
+// the call for the function to render and animate      
+animate(new Date().getTime()); 
+
+		</script>
+	</body>
+</html>
